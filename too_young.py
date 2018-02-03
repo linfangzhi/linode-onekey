@@ -30,7 +30,7 @@ os.system('clear')
 print('''
     @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
     @                                     
-    @   vultr 搭建专用 木木小方方 2018-01-30  
+    @   linode 搭建专用 木木小方方 2018-02-02 
     @                                     
     @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
     @                                     
@@ -91,7 +91,6 @@ make_config_file()
 os.system('python mujson_mgr.py -a -p 8848 -k {key}'.format(key=key))
 for i in range(int(a[0]), int(a[-1])):
     os.system('python mujson_mgr.py -a -p {port} -k {key}'.format(port=i,key=key))
-
 os.system('chmod +x /etc/rc.d/rc.local')
 os.system('chmod +x /root/linode-onekey/shadowsocksr/run.sh')
 with open('/etc/rc.d/rc.local','a')as file:
