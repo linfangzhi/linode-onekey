@@ -74,7 +74,16 @@ while 1:
         break
     else:
         continue
-
+while 1:
+    speed_lit = input('是否限速，0or1\n')
+    if speed_lit:
+        break
+    else:
+        continue
+if speed_lit == '1':
+    set_speed = ' -s 900 -S 1100'
+else:
+    set_speed = ''
 print('请牢记密码，安装程序5秒后开始')
 time.sleep(5)
 os.system('yum -y install python-setuptools && easy_install pip')
@@ -97,7 +106,7 @@ os.system('firewall-cmd --zone=public --add-port=8848/tcp --permanent')
 os.system('firewall-cmd --zone=public --add-port=8848/udp --permanent')
 os.system('firewall-cmd --zone=public --add-port=8842/tcp --permanent')
 for i in range(int(a[0]), int(a[-1])):
-    os.system('python mujson_mgr.py -a -p {port} -k {key}'.format(port=i,key=key))
+    os.system('python mujson_mgr.py -a -p {port} -k {key} {set_speed}'.format(port=i, key=key, set_speed=set_speed))
     os.system('firewall-cmd --zone=public --add-port={}/tcp --permanent'.format(i))
     os.system('firewall-cmd --zone=public --add-port={}/udp --permanent'.format(i))
 os.system('firewall-cmd --reload')
@@ -110,6 +119,7 @@ with open('/etc/rc.d/rc.local','a')as file:
 os.system('clear')
 os.system('chmod +x /etc/rc.d/rc.local')
 os.chdir('/root/linode-onekey')
-os.system('chmod +x ./magic_bbr.sh && ./magic_bbr.sh')# BBR
+os.system('chmod +x ./magic_bbr.sh')
+os.system('cp ./magic_bbr.sh ..')
+os.system('chmod +x ./bbr.sh && ./bbr.sh')  # BBR
 print('完成')
-
