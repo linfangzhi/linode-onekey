@@ -47,7 +47,6 @@ installbbr(){
 	if [[ $yn == [Yy] ]]; then
 		echo -e "${Info} VPS 重启中..."
 		reboot
-	fi
 }
 
 
